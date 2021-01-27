@@ -1,0 +1,37 @@
+/******************************
+          FONT-SIZE
+******************************/
+
+$base-font-size: 16px;
+
+@mixin font-size($font-size) {
+    font-size: $font-size;
+    font-size: ($font-size/$base-font-size) * 1rem;
+}
+
+/******************************
+        RESPONSIVENESS
+******************************/
+
+$sm: 36rem; // 576px
+$md: 48rem; // 768px
+$lg: 62rem; // 992px
+$xl: 75rem; // 1200px <- me
+$xxl: 112.5rem; // 1800px
+$xxxl: 155rem; // 2480px
+
+@mixin bp($min: 0, $max: 0) {
+    $query: "all" !default;
+    @if $min != 0 and $max != 0 {
+        $query: "(min-width: #{$min}) and (max-width: #{$max})";
+    } // set both min and max
+    @else if $min != 0 and $max == 0 {
+        $query: "(min-width: #{$min})";
+    } // set just min
+    @else if $min == 0 and $max != 0 {
+        $query: "(max-width: #{$max})";
+    } // set just max
+    @media #{$query} {
+        @content;
+    }
+}

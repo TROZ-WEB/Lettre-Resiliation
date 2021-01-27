@@ -1,0 +1,436 @@
+@import "./colors";
+@import "./fonts";
+@import "./mixins";
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body,
+html {
+    font-family: Work Sans, sans-serif;
+    color: #424242;
+    -webkit-font-smoothing: subpixel-antialiased;
+    line-height: 1.5;
+    font-size: 100%;
+    overflow-x: hidden;
+}
+
+.container {
+    margin-top: 75px;
+    max-width: 642px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/******************************
+            HEADER
+******************************/
+
+.header_container {
+    position: fixed;
+    background-color: $white;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 55px;
+    border-bottom: 1px solid #d8d8d8;
+    z-index: 100;
+
+    @include bp($max: $sm) {
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 850px;
+    margin: auto;
+}
+
+.header_link {
+    color: #424242;
+}
+
+.header_img--cart {
+    width: 27px;
+    height: 27px;
+    margin: auto;
+}
+
+/******************************
+            TITLE
+******************************/
+
+.title_container {
+    margin: 25px 0;
+}
+
+.title {
+    color: $blue;
+    text-align: center;
+    font-weight: 400;
+    @include font-size(25px);
+}
+
+/******************************
+            STEPS
+******************************/
+
+.steps_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+}
+
+//Grey line
+.steps_container::after {
+    content: "";
+    border-bottom: 1px solid #9b9b9b;
+    width: 100%;
+    position: absolute;
+    top: 18px;
+    z-index: -10;
+}
+
+.step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #9b9b9b;
+}
+
+//White covers
+.steps_container .step:first-child::before {
+    content: "";
+    background-color: $white;
+    width: 80%;
+    position: absolute;
+    height: 100%;
+    top: 0px;
+    left: -40px;
+    z-index: -5;
+}
+
+.steps_container .step:last-child::before {
+    content: "";
+    background-color: $white;
+    width: 80%;
+    position: absolute;
+    height: 100%;
+    top: 0px;
+    right: -40px;
+    z-index: -5;
+}
+
+.step_circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #9b9b9b;
+    border-radius: 50%;
+    background-color: $white;
+    -webkit-box-shadow: 0px 0px 0px 6px #ffffff;
+    box-shadow: 0px 0px 0px 6px #ffffff;
+}
+
+.step--valid .step_circle {
+    border: 1px solid $blue;
+    color: $blue;
+}
+
+.step--active .step_circle {
+    border: 1px solid $blue;
+    background-color: $blue;
+    color: $white;
+}
+
+.step_number {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    font-weight: 400;
+    @include font-size(20px);
+}
+
+.step--valid .step_number {
+    text-indent: -30000px;
+}
+
+.step--valid .step_number:after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    right: -6px;
+    width: 8px;
+    height: 17px;
+    margin: auto;
+    border-left: 2px solid #1e88e5;
+    border-top: 2px solid #1e88e5;
+    border-color: transparent #1e88e5 #1e88e5 transparent;
+    border-style: solid;
+    border-width: 1px 2px 2px 1px;
+    transform: rotate(45deg);
+}
+
+.step_description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @include font-size(14px);
+
+    @include bp($max: $sm) {
+        width: 75px;
+        @include font-size(11px);
+    }
+}
+
+.step--active .step_description,
+.step--valid .step_description {
+    color: $blue;
+}
+
+/******************************
+            FORM
+******************************/
+
+.form {
+    padding: 50px 15px;
+}
+
+.input_container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input_container--textarea {
+    border: 1px solid #d8d8d8;
+    border-radius: 10px;
+}
+
+.input_container--select:after {
+    content: "";
+    position: absolute;
+    top: 45px;
+    right: 20px;
+    width: 10px;
+    height: 10px;
+    border-left: 1px solid #424242;
+    border-top: 1px solid #424242;
+    border-color: transparent #424242 #424242 transparent;
+    border-style: solid;
+    border-width: 1px;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+.label {
+    display: block;
+    padding-left: 15px;
+    margin-bottom: 8px;
+    @include font-size(16px);
+}
+
+.input {
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+    height: 44px;
+    padding: 0 15px;
+    border: 1px solid #d8d8d8;
+    border-radius: 10px;
+    background: #f6f6f6;
+    @include font-size(16px);
+}
+
+.input--readonly {
+    color: #9b9b9b;
+}
+
+.input--textarea {
+    border: none;
+    background-color: $transparent;
+    padding: 15px;
+    margin-left: -5px;
+    overflow-y: auto;
+    resize: none;
+    height: 200px;
+    font-family: Work Sans, sans-serif;
+    resize: vertical;
+    line-height: 1.5;
+    @include font-size(16px);
+}
+
+.input--select {
+    position: relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    width: 100%;
+}
+
+.input--addfile {
+    position: relative;
+    color: $blue;
+    margin-left: 30px;
+}
+
+.input--addfile::before {
+    content: "+";
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #1e88e5;
+    border-radius: 50%;
+    font-weight: 400;
+}
+
+.input--file {
+    display: none;
+}
+
+.input_status--file {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 20px;
+    color: #9b9b9b;
+    font-style: italic;
+
+    @include bp($max: $sm) {
+        @include font-size(13px);
+        margin-left: 10px;
+    }
+}
+
+.fileremove_img {
+    width: 25px;
+}
+
+.adresschange_link {
+    color: $blue;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.adresschange_img {
+    width: 20px;
+}
+
+.input_button {
+    border-radius: 10px;
+    border: 1px solid #d8d8d8;
+    background: #f6f6f6;
+    text-align: center;
+    width: 30%;
+    height: 40px;
+    padding-left: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #5c5d5f;
+    cursor: pointer;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 320px;
+    width: 100%;
+    height: 35px;
+    border-radius: 50px;
+    border: 1px solid #1e88e5;
+    background: #1e88e5;
+    font-size: 18px;
+    font-size: 1.125rem;
+    color: #fff;
+    text-decoration: none;
+    margin: 20px auto 15px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.button:hover {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+/******************************
+           POPOVER
+******************************/
+
+.popover {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    right: 0px;
+    background: #c5c5c5;
+    color: #fff;
+    padding: 5px 11px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    @include font-size(12px);
+    transition: 0.3s;
+}
+
+.popover_link::after {
+    content: "?";
+    display: block;
+    width: 17px;
+    height: 17px;
+    background: #424242;
+    color: #fff;
+    font-size: 12px;
+    font-size: 0.75rem;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: 500;
+    font-family: Arial, sans-serif;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.popover_container:hover .popover {
+    visibility: visible;
+    opacity: 1;
+}
+
+/******************************
+           PARTNER
+******************************/
+
+.partner {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    @include font-size(13px);
+}
+
+.partner_container {
+    display: flex;
+    justify-content: center;
+}
+
+.partner_img {
+    margin-left: 10px;
+}

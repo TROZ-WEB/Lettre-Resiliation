@@ -1,0 +1,5 @@
+export { default as Bin } from './Bin'
+export { default as Cart } from './Cart'
+export { default as Edit } from './Edit'
+export { default as LaPoste } from './LaPoste'
+export { default as Logo } from './Logo'
